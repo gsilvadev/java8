@@ -3,6 +3,7 @@ package java8;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Curso {
 	private String nome;
@@ -34,5 +35,9 @@ class ExemploCursos {
 			.filter(c -> c.getAlunos() > 50)
 			.map(c -> c.getNome())
 			.forEach(System.out::println);
+		
+		System.out.println(cursos.stream().mapToInt(c -> c.getAlunos()).average().orElse(0));
+		
+		cursos.stream().filter(c -> c.getAlunos() > 50).collect(Collectors.toList());
 	}
 }
